@@ -1,4 +1,4 @@
-//  07-03-2024
+//  07/03/2024
 
 /**
  * Definition for singly-linked list.
@@ -13,19 +13,13 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        int count=0;
-        ListNode* newnode=head;
-        while(head!=NULL)
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast!=NULL && fast->next!=NULL)
         {
-            count++;
-            head=head->next;
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        count=count/2+1;
-        while(count!=1)
-        {
-            newnode=newnode->next;
-            count--;
-        }
-        return newnode;
+        return slow;
     }
 };
