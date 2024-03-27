@@ -14,10 +14,7 @@ public:
     vector<int> arr;
     void postorder(TreeNode *root)
     {
-        if(root==NULL)
-            return;
-        
-        else
+        if(root!=NULL)
         {
             postorder(root->left);
             postorder(root->right);
