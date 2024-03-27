@@ -14,10 +14,7 @@ public:
     vector<int> arr;
     void preorder(TreeNode *root)
     {
-        if(root==NULL)
-            return;
-        
-        else
+        if(root!=NULL)
         {
             arr.push_back(root->val);
             preorder(root->left);
