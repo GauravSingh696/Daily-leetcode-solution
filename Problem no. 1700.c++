@@ -1,27 +1,35 @@
-// 08-04-2024
-
 class Solution {
 public:
     int countStudents(vector<int>& students, vector<int>& sandwiches) {
-        int n=students.size();
+        queue<int> que(students.begin(), students.end());
+        stack<int> st;
 
-        int arr[2]={0};
+        int n = sandwiches.size();
 
-        for(auto st : students)
-        {
-            arr[st]++;
+        for(int i=n-1;i>=0;i--) {
+            st.push(sandwiches[i]);
         }
 
-        for(int i=0;i<n;i++)
-        {
-            int sand=sandwiches[i];
+        int count = 0;
 
-            if(arr[sand]==0)
-                return n-i;
-            
-            arr[sand]--;
+        while(!st.empty()) {
+            if(que.front() == st.top()) {
+                que.pop();
+                st.pop();
+                count = 0;
+            }
+            else {
+                count++;
+                int val = que.front();
+                que.push(val);
+                que.pop();
+            }
+
+            if(count == que.size()) {
+                break;
+            }
         }
 
-        return 0;
+        return st.empty() ? 0 : count ;
     }
 };
