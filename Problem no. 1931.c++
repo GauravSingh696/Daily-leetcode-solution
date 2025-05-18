@@ -24,6 +24,7 @@ public:
     int solve(int remainingCols, int prevColumnIdx, int m) {
         if (remainingCols == 0) 
             return 1;
+        
         if (t[remainingCols][prevColumnIdx] != -1) 
             return t[remainingCols][prevColumnIdx];
 
