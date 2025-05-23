@@ -1,32 +1,26 @@
-// 19-05-2024
-
 class Solution {
 public:
-    typedef long long ll;
+    typedef long long LL;
 
     long long maximumValueSum(vector<int>& nums, int k, vector<vector<int>>& edges) {
-        ll sum = 0;
-        int count = 0;
-        int min_nuksan = INT_MAX;
+        vector<int> profit;
+        LL sum = 0;
 
-        for(ll num : nums)
-        {
-            if((num^k) > num)
-            {
-                count++;
-                sum += num^k;
-            }
+        for(int i=0;i<nums.size();i++) {
+            sum += nums[i];
 
-            else
-                sum += num;
-            
-            min_nuksan = min((long long)min_nuksan , abs(num - (num^k)));
-
+            profit.push_back((nums[i] ^ k) - nums[i]);
         }
 
-        if(count%2 == 0)
-            return sum;
+        sort(profit.begin(), profit.end(), greater<int>());
         
-        return sum - min_nuksan;
+        for(int i=0;i<profit.size()-1;i+=2) {
+            LL val = profit[i] + profit[i+1];
+
+            if(val > 0)
+                sum += val;
+        }
+
+        return sum;
     }
 };
