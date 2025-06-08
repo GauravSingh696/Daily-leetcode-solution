@@ -1,5 +1,3 @@
-// 21-09-2024
-
 class Solution {
     void solve(int num, vector<int>& list, int &n) {
         if (num > n)
