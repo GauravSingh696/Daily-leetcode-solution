@@ -11,7 +11,7 @@ public:
             else
                 result = max(result, num - min_val);
         }
-
+        
         return result;
     }
 };
