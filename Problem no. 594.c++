@@ -2,18 +2,16 @@ class Solution {
 public:
     int findLHS(vector<int>& nums) {
         unordered_map<int, int> mp;
-        int result = 0;
-
-        for(int val : nums)
-        {
-            mp[val]++;
+        
+        for(int &it : nums) {
+            mp[it]++;
         }
 
-        for(auto i : mp)
-        {
-            if(mp.find(i.first-1) != mp.end())
-            {
-                result = max(result, i.second + mp[i.first-1]);
+        int result = 0;
+
+        for(auto &it : mp) {
+            if(mp.find(it.first-1) != mp.end()) {
+                result = max(result, mp[it.first] + mp[it.first-1]);
             }
         }
 
