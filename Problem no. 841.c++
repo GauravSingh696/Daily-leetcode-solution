@@ -1,35 +1,21 @@
 class Solution {
 public:
-    bool canVisitAllRooms(vector<vector<int>>& rooms) {
-        int n = rooms.size();
-        vector<bool> vec(n, false);
+    void solve(int curr, vector<vector<int>>& rooms, vector<int>& visited) {
+        visited[curr] = 1;
 
-        queue<int> que;
-        
-        for(auto &it : rooms[0])
-            que.push(it);
-
-        vec[0] = true;
-
-        while(!que.empty()) {
-            int room = que.front();
-            que.pop();
-
-            if(vec[room])
-                continue;
-            
-            vec[room] = true;
-
-            for(auto it : rooms[room]) {
-                que.push(it);
+        for(auto &it : rooms[curr]) {
+            if(!visited[it]) {
+                solve(it, rooms, visited);
             }
         }
+    }
 
-        for(auto it : vec) {
-            if(it == false)
-                return false;
-        }
+    bool canVisitAllRooms(vector<vector<int>>& rooms) {
+        int n = rooms.size();
+        vector<int> visited(n, 0);
 
-        return true;
+        solve(0, rooms, visited);
+
+        return count(visited.begin(), visited.end(), 0) ? false : true ;
     }
 };
