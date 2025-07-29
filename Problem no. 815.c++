@@ -1,8 +1,9 @@
 class Solution {
 public:
     int numBusesToDestination(vector<vector<int>>& routes, int source, int target) {
-        if(source == target)
+        if(source == target) {
             return 0;
+        }
 
         unordered_map<int, vector<int>> root_to_stop;
         int n = routes.size();
