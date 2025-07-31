@@ -9,38 +9,23 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
 class Solution {
-public:
-    int sum=0;
+  public:
+    int sum = 0;
 
-    void solve(TreeNode *root)
-    {
-        if(root==NULL)
+    void solve(TreeNode *root) {
+        if(!root)
             return;
-
-        else
-        {
-            if(isleftLeavesNode(root->left))
-                sum += root->left->val;
             
-            solve(root->left);
-            solve(root->right);
-        }
-    }
-
-    bool isleftLeavesNode(TreeNode *root)
-    {
-        if(root==NULL)
-            return false;
+        if(root->left && !root->left->left && !root->left->right)
+            sum+= root->left->val;
         
-        else if(root->left==NULL && root->right==NULL)
-            return true;
-
-        return false;
+        solve(root->left);
+        solve(root->right);
     }
 
     int sumOfLeftLeaves(TreeNode* root) {
-        
         solve(root);
         return sum;
     }
