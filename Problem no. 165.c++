@@ -1,44 +1,23 @@
-// 03-05-2024
-
 class Solution {
-public:
-    vector<string> getTokens(string version)
-    {
-        stringstream v(version);
-        string token_v = "";
-        vector<string> version_tokens;
-
-        while(getline(v, token_v, '.'))
-        {
-            version_tokens.push_back(token_v);
-        }
-
-        return version_tokens;
-    }
-
+  public:
     int compareVersion(string version1, string version2) {
-        vector<string> v1 = getTokens(version1);
-        vector<string> v2 = getTokens(version2);
+        vector<int> v1, v2;
+        string part;
+        stringstream ss1(version1), ss2(version2);
 
-        int m = v1.size();
-        int n = v2.size();
-        int i=0;
+        while (getline(ss1, part, '.')) v1.push_back(stoi(part));
+        while (getline(ss2, part, '.')) v2.push_back(stoi(part));
 
-        while(i<m || i<n)
-        {
-            int a = i<m ? stoi(v1[i]) : 0;
-            int b = i<n ? stoi(v2[i]) : 0;
+        int n = max(v1.size(), v2.size());
 
-            if(a>b)
-                return 1;
-            
-            else if(b>a)
-                return -1;
-            
-            else
-                i++;
+        for (int i = 0; i < n; ++i) {
+            int a = (i < (int)v1.size()) ? v1[i] : 0;
+            int b = (i < (int)v2.size()) ? v2[i] : 0;
+
+            if (a < b) return -1;
+            if (a > b) return 1;
         }
-
+        
         return 0;
     }
 };
