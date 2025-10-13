@@ -9,7 +9,7 @@ public:
             sort(s2.begin(), s2.end());
 
             if(s1 == s2) {
-                words.erase(words.begin()+i);
+                words.erase(words.begin() + i);
                 i--;
             }
         }
