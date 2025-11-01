@@ -1,5 +1,3 @@
-// 06-09-2024
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -13,17 +11,10 @@
 class Solution {
 public:
     ListNode* modifiedList(vector<int>& nums, ListNode* head) {
-        unordered_set<int> st;
-
-        for(auto it : nums)
-        {
-            st.insert(it);
-        }
-
+        unordered_set<int> st(nums.begin(), nums.end());
         ListNode* temp = head;
 
-        while(st.find(temp->val) != st.end())
-        {
+        while(st.find(temp->val) != st.end()) {
             temp = temp->next;
         }
 
@@ -34,16 +25,11 @@ public:
         
         ListNode* curr;
 
-        while(temp)
-        {
-            if(st.find(temp->val) != st.end())
-            {
+        while(temp) {
+            if(st.find(temp->val) != st.end()) {
                 curr->next = temp->next;
                 temp = temp->next;
-            }
-            
-            else
-            {
+            } else {
                 curr = temp;
                 temp = temp->next;
             }
