@@ -6,7 +6,7 @@ class Solution {
         for(int i = 0; i < apple.size(); i++) sum += apple[i];
         for(int i = 0; i < capacity.size(); i++) hash[capacity[i]]++;
 
-        for(int i = 50; i > 0; i--) {
+        for(int i=50;i>0;i--) {
             while(hash[i] > 0) {
                 sum -= i;
                 hash[i]--;
