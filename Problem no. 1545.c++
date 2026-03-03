@@ -1,30 +1,23 @@
-// 19-10-2024
-
 class Solution {
-public:
+  public:
     char findKthBit(int n, int k) {
-        string s1 = "0";
+        string ans="0";
 
-        if(n==1) {
-            return s1[0];
-        }
+        while(n-- && k>ans.length()){
+            string temp=ans;
+            reverse(temp.begin(),temp.end());
 
-        n--;
-
-        while(n--) {
-            string rev = s1;
-            reverse(begin(rev) , end(rev));
-
-            for(int i=0;i<=s1.size()-1;i++) {
-                if(rev[i] == '0')
-                    rev[i] = '1';
-                else
-                    rev[i] = '0';
+            for(int i=0;i<temp.size();i++) {
+                if(temp[i]=='0') {
+                    temp[i]='1';
+                } else {
+                    temp[i]='0';
+                }  
             }
 
-            s1 = s1 + '1' + rev;
+            ans+="1"+temp;
         }
 
-        return s1[k-1];
+        return ans[k-1];
     }
 };
